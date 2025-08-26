@@ -6,30 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12B889B82E5D6BF200F32A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B889AD2E5D6BF200F32A43 /* AppDelegate.swift */; };
+		12B889B92E5D6BF200F32A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B889AE2E5D6BF200F32A43 /* SceneDelegate.swift */; };
+		12B889BA2E5D6BF200F32A43 /* UIKit_test_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12B889B42E5D6BF200F32A43 /* UIKit_test_app.xcdatamodeld */; };
+		12B889BB2E5D6BF200F32A43 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B889B52E5D6BF200F32A43 /* MainView.swift */; };
+		12B889BC2E5D6BF200F32A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B889B02E5D6BF200F32A43 /* Assets.xcassets */; };
+		12B889BE2E5D6BF200F32A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B889B32E5D6BF200F32A43 /* LaunchScreen.storyboard */; };
+		12B889CB2E5D6C9300F32A43 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B889CA2E5D6C9300F32A43 /* MainViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		12B8898C2E5D654A00F32A43 /* UIKit-test-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIKit-test-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		12B889AD2E5D6BF200F32A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		12B889AE2E5D6BF200F32A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		12B889B02E5D6BF200F32A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12B889B12E5D6BF200F32A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12B889B22E5D6BF200F32A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		12B889B52E5D6BF200F32A43 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		12B889B72E5D6BF200F32A43 /* UIKit_test_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UIKit_test_app.xcdatamodel; sourceTree = "<group>"; };
+		12B889CA2E5D6C9300F32A43 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		12B889A12E5D654B00F32A43 /* Exceptions for "UIKit-test-app" folder in "UIKit-test-app" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 12B8898B2E5D654A00F32A43 /* UIKit-test-app */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		12B8898E2E5D654A00F32A43 /* UIKit-test-app */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				12B889A12E5D654B00F32A43 /* Exceptions for "UIKit-test-app" folder in "UIKit-test-app" target */,
-			);
-			path = "UIKit-test-app";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		12B889892E5D654A00F32A43 /* Frameworks */ = {
@@ -45,7 +42,7 @@
 		12B889832E5D654A00F32A43 = {
 			isa = PBXGroup;
 			children = (
-				12B8898E2E5D654A00F32A43 /* UIKit-test-app */,
+				12B889B62E5D6BF200F32A43 /* UIKit-test-app */,
 				12B8898D2E5D654A00F32A43 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +53,61 @@
 				12B8898C2E5D654A00F32A43 /* UIKit-test-app.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		12B889AF2E5D6BF200F32A43 /* ApplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				12B889AD2E5D6BF200F32A43 /* AppDelegate.swift */,
+				12B889AE2E5D6BF200F32A43 /* SceneDelegate.swift */,
+			);
+			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
+		12B889B62E5D6BF200F32A43 /* UIKit-test-app */ = {
+			isa = PBXGroup;
+			children = (
+				12B889B12E5D6BF200F32A43 /* Info.plist */,
+				12B889C82E5D6C4600F32A43 /* Source */,
+				12B889CD2E5D6E4F00F32A43 /* NetworkingLayer */,
+				12B889CC2E5D6C9F00F32A43 /* Resource */,
+				12B889AF2E5D6BF200F32A43 /* ApplicationLayer */,
+				12B889B42E5D6BF200F32A43 /* UIKit_test_app.xcdatamodeld */,
+			);
+			path = "UIKit-test-app";
+			sourceTree = "<group>";
+		};
+		12B889C82E5D6C4600F32A43 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				12B889C92E5D6C8700F32A43 /* Main */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		12B889C92E5D6C8700F32A43 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				12B889B52E5D6BF200F32A43 /* MainView.swift */,
+				12B889CA2E5D6C9300F32A43 /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		12B889CC2E5D6C9F00F32A43 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				12B889B02E5D6BF200F32A43 /* Assets.xcassets */,
+				12B889B32E5D6BF200F32A43 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		12B889CD2E5D6E4F00F32A43 /* NetworkingLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkingLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,9 +124,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				12B8898E2E5D654A00F32A43 /* UIKit-test-app */,
 			);
 			name = "UIKit-test-app";
 			packageProductDependencies = (
@@ -122,6 +171,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B889BC2E5D6BF200F32A43 /* Assets.xcassets in Resources */,
+				12B889BE2E5D6BF200F32A43 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +183,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B889CB2E5D6C9300F32A43 /* MainViewModel.swift in Sources */,
+				12B889B82E5D6BF200F32A43 /* AppDelegate.swift in Sources */,
+				12B889B92E5D6BF200F32A43 /* SceneDelegate.swift in Sources */,
+				12B889BA2E5D6BF200F32A43 /* UIKit_test_app.xcdatamodeld in Sources */,
+				12B889BB2E5D6BF200F32A43 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		12B889B32E5D6BF200F32A43 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12B889B22E5D6BF200F32A43 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		12B889A32E5D654B00F32A43 /* Debug */ = {
@@ -150,7 +217,6 @@
 				INFOPLIST_FILE = "UIKit-test-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -178,7 +244,6 @@
 				INFOPLIST_FILE = "UIKit-test-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +400,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		12B889B42E5D6BF200F32A43 /* UIKit_test_app.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				12B889B72E5D6BF200F32A43 /* UIKit_test_app.xcdatamodel */,
+			);
+			currentVersion = 12B889B72E5D6BF200F32A43 /* UIKit_test_app.xcdatamodel */;
+			path = UIKit_test_app.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 12B889842E5D654A00F32A43 /* Project object */;
 }
