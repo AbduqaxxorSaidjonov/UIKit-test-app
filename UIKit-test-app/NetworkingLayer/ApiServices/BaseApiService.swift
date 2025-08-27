@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Combine
+
+struct BaseApiService {
+    func getTodosList() -> AnyPublisher<[TodosModel]?, Error> {
+        SessionService.shared.get(endpoint: BaseEndpoints.getTodos, objectType: [TodosModel]?.self)
+    }
+}

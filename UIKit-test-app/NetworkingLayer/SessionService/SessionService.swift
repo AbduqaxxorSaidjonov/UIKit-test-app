@@ -49,7 +49,7 @@ final class SessionService: NSObject {
                 print("STATUS CODE: \(urlResponse.statusCode)")
                 print("********************************")
                 
-                guard [200, 201, 202, 203, 204].contains(urlResponse.statusCode) else {
+                guard urlResponse.statusCode == 200 else {
                     throw NetworkErrors.unExpectedError(urlResponse.statusCode)
                 }
                 
@@ -68,7 +68,7 @@ final class SessionService: NSObject {
         var components = URLComponents()
         components.scheme = endpoint.scheme
         components.host = endpoint.host
-        components.port = Constants.Hosts.baseUrlPort
+        components.port = nil
         components.path = endpoint.path
         components.queryItems = endpoint.params
         

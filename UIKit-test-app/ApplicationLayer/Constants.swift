@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct Constants {
+    struct URLs {
+        static let baseScheme = "https"
+        static let baseURL = "jsonplaceholder.typicode.com"
+    }
+    
+    struct APIPaths {
+        static let todos = "/todos"
+        static let users = "/users"
+    }
+}

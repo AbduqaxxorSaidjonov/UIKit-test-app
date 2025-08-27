@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum NetworkErrors: Error {
+    case requestUnknownError
+    case unExpectedError(Int)
+}
