@@ -16,4 +16,6 @@ struct TodosModel: Decodable {
     var titleUnwrapped: String {
         return title ?? "no title"
     }
+    
+    var user: User?
 }

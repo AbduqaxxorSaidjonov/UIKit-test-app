@@ -79,7 +79,7 @@ class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             viewModel.isSearching = true
             viewModel.filteredTodos = viewModel.todosList.filter { todo in
                 let matchesTitle = todo.title?.lowercased().contains(searchText.lowercased())
-//                let matchesUser = todo.user?.name.lowercased().contains(searchText.lowercased()) ?? false
+                let matchesUser = todo.user?.name?.lowercased().contains(searchText.lowercased()) ?? false
                 return matchesTitle ?? false
             }
         }
@@ -88,5 +88,11 @@ class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 }
 
 extension MainView: MainViewModelDelegate {
+    func didFinish() {
+        tableView.reloadData()
+    }
     
+    func didFail(error: any Error) {
+        print(error)
+    }
 }

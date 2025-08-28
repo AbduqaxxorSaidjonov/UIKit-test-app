@@ -12,4 +12,8 @@ struct BaseApiService {
     func getTodosList() -> AnyPublisher<[TodosModel]?, Error> {
         SessionService.shared.get(endpoint: BaseEndpoints.getTodos, objectType: [TodosModel]?.self)
     }
+    
+    func getUsersList() -> AnyPublisher<[User]?, Error> {
+        SessionService.shared.get(endpoint: BaseEndpoints.getUsers, objectType: [User]?.self)
+    }
 }

@@ -27,6 +27,7 @@ class MainViewModel: ObservableObject {
     
     weak var delegate: MainViewModelDelegate?
     private(set) var todosList: [TodosModel] = []
+    private(set) var usersList: [User] = []
     var filteredTodos: [TodosModel] = []
     var currentPage = 1
     let itemsPerPage = 20
@@ -58,6 +59,33 @@ extension MainViewModel {
                 self.isLoading = false
                 if let response = response {
                     self.todosList = response
+                    self.getUsers()
+                }
+            }
+            .store(in: &anyCancellable)
+    }
+    
+    func getUsers() {
+        isLoading = true
+        sessionService.getUsersList()
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    self.isLoading = false
+                    self.alertMessage = "Network Error"
+                    self.delegate?.didFail(error: error)
+                default:
+                    break
+                }
+            } receiveValue: { response in
+                self.isLoading = false
+                if let response = response {
+                    self.usersList = response
+                    self.usersList.forEach { user in
+                        self.todosList.filter({ $0.userId == user.id }).indices.forEach { index in
+                            self.todosList[index].user = user
+                        }
+                    }
                     self.delegate?.didFinish()
                 }
             }

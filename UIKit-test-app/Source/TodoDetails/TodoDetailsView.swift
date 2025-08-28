@@ -23,14 +23,14 @@ class TodoDetailsViewController: UIViewController {
 
         let titleLabel = UILabel()
         titleLabel.text = "Title: \(todo.titleUnwrapped)"
-//        let statusLabel = UILabel()
-//        statusLabel.text = "Completed: \(todo.completed ? "✅" : "❌")"
-//        let userLabel = UILabel()
-//        userLabel.text = "User: \(todo.user?.name ?? "Unknown")"
-//        let emailLabel = UILabel()
-//        emailLabel.text = "Email: \(todo.user?.email ?? "N/A")"
+        let statusLabel = UILabel()
+        statusLabel.text = "Completed: \((todo.completed ?? false) ? "✅" : "❌")"
+        let userLabel = UILabel()
+        userLabel.text = "User: \(todo.user?.name ?? "Unknown")"
+        let emailLabel = UILabel()
+        emailLabel.text = "Email: \(todo.user?.email ?? "N/A")"
 
-        let stack = UIStackView(arrangedSubviews: [titleLabel])//, statusLabel, userLabel, emailLabel])
+        let stack = UIStackView(arrangedSubviews: [titleLabel, statusLabel, userLabel, emailLabel])
         stack.axis = .vertical
         stack.spacing = 8
 

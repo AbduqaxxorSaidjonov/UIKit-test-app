@@ -35,6 +35,6 @@ class TodoCell: UITableViewCell {
 
     func configure(with todo: TodosModel) {
         titleLabel.text = todo.title
-//        userLabel.text = todo.user?.name ?? "Unknown"
+        userLabel.text = todo.user?.name ?? "Unknown"
     }
 }
