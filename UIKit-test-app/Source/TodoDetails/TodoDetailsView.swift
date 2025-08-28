@@ -22,11 +22,11 @@ class TodoDetailsViewController: UIViewController {
         title = "Todo Details"
 
         let titleLabel = UILabel()
-        titleLabel.text = "Title: \(todo.titleUnwrapped)"
+        titleLabel.text = "Todo title: \(todo.titleUnwrapped)"
         let statusLabel = UILabel()
         statusLabel.text = "Completed: \((todo.completed ?? false) ? "✅" : "❌")"
         let userLabel = UILabel()
-        userLabel.text = "User: \(todo.user?.name ?? "Unknown")"
+        userLabel.text = "User: \(todo.user?.name ?? "Unknown") \(todo.user?.username ?? "no Name")"
         let emailLabel = UILabel()
         emailLabel.text = "Email: \(todo.user?.email ?? "N/A")"
 

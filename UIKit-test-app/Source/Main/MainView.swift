@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     let tableView = UITableView()
-    let searchBar = UISearchBar()
+    let searchController = UISearchController(searchResultsController: nil)
     
     let viewModel = MainViewModel()
     
@@ -25,10 +25,10 @@ class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     private func setupUI() {
-        searchBar.delegate = self
-        searchBar.placeholder = "Search todos or users"
-        navigationItem.titleView = searchBar
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
         
+        tableView.tableHeaderView = searchController.searchBar
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(TodoCell.self, forCellReuseIdentifier: "TodoCell")
@@ -40,47 +40,53 @@ class MainView: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     // MARK: - TableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.isSearching ? viewModel.filteredTodos.count : viewModel.todosList.count
+        return viewModel.isSearching
+            ? viewModel.filteredTodos.count
+            : viewModel.displayedTodos.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoCell else {
-            return UITableViewCell()
-        }
-        let todo = viewModel.isSearching ? viewModel.filteredTodos[indexPath.row] : viewModel.getCurrentPageTodos()[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoCell
+        let todo = viewModel.isSearching
+            ? viewModel.filteredTodos[indexPath.row]
+            : viewModel.displayedTodos[indexPath.row]
         cell.configure(with: todo)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todo = viewModel.isSearching ? viewModel.filteredTodos[indexPath.row] : viewModel.getCurrentPageTodos()[indexPath.row]
-        let detailsVC = TodoDetailsViewController(todo: todo)
-        navigationController?.pushViewController(detailsVC, animated: true)
-    }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        
+
         if offsetY > contentHeight - scrollView.frame.height * 4 {
-            if viewModel.currentPage * viewModel.itemsPerPage < viewModel.todosList.count {
-                viewModel.currentPage += 1
+            viewModel.loadMore {
                 tableView.reloadData()
             }
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = viewModel.isSearching
+            ? viewModel.filteredTodos[indexPath.row]
+            : viewModel.displayedTodos[indexPath.row]
+        let detailsVC = TodoDetailsViewController(todo: todo)
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
     // MARK: - Search
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text ?? "Search todos or Users")
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
         if searchText.isEmpty {
             viewModel.isSearching = false
         } else {
             viewModel.isSearching = true
             viewModel.filteredTodos = viewModel.todosList.filter { todo in
-                let matchesTitle = todo.title?.lowercased().contains(searchText.lowercased())
+                let matchesTitle = todo.title?.lowercased().contains(searchText.lowercased()) ?? false
                 let matchesUser = todo.user?.name?.lowercased().contains(searchText.lowercased()) ?? false
-                return matchesTitle ?? false
+                return matchesTitle || matchesUser
             }
         }
         tableView.reloadData()

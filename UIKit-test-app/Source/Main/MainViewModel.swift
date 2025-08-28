@@ -13,7 +13,7 @@ protocol MainViewModelDelegate: AnyObject {
     func didFail(error: Error)
 }
 
-class MainViewModel: ObservableObject {
+class MainViewModel {
     var isLoading: Bool = false
     var showAlert: Bool = false
     var alertMessage: String? {
@@ -26,18 +26,29 @@ class MainViewModel: ObservableObject {
     var anyCancellable: Set<AnyCancellable> = []
     
     weak var delegate: MainViewModelDelegate?
-    private(set) var todosList: [TodosModel] = []
-    private(set) var usersList: [User] = []
+    
     var filteredTodos: [TodosModel] = []
     var currentPage = 1
     let itemsPerPage = 20
     var isSearching = false
     
+    private(set) var todosList: [TodosModel] = []
+    private(set) var usersList: [User] = []
+    private(set) var displayedTodos: [TodosModel] = []
+    
     // MARK: - Pagination
     
-    func getCurrentPageTodos() -> [TodosModel] {
+    func resetPagination() {
+        currentPage = 1
+        displayedTodos = Array(todosList.prefix(itemsPerPage))
+    }
+    
+    func loadMore(onSuccess: () -> Void) {
+        guard displayedTodos.count < todosList.count else { return }
+        currentPage += 1
         let endIndex = min(currentPage * itemsPerPage, todosList.count)
-        return Array(todosList.prefix(endIndex))
+        displayedTodos = Array(todosList.prefix(endIndex))
+        onSuccess()
     }
 }
 
@@ -81,11 +92,10 @@ extension MainViewModel {
                 self.isLoading = false
                 if let response = response {
                     self.usersList = response
-                    self.usersList.forEach { user in
-                        self.todosList.filter({ $0.userId == user.id }).indices.forEach { index in
-                            self.todosList[index].user = user
-                        }
+                    self.todosList.indices.forEach { index in
+                        self.todosList[index].user = self.usersList.filter({ $0.id == self.todosList[index].userId }).first
                     }
+                    self.resetPagination()
                     self.delegate?.didFinish()
                 }
             }
